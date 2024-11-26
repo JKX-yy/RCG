@@ -1,0 +1,1084 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+      <meta name="keywords" content="Robotics, Reinforcement Learning, Large Language Model">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Task-Oriented Adaptive Learning of Robot Manipulation Skills</title>
+    <style>
+        /* 设置水平线的粗细为 5px */
+        hr {
+            border: 0;
+            border-top: 5px solid black;
+        }
+      
+        .red-text {
+            color: red;
+        }
+
+
+.blue-text {
+    color: blue;
+}
+ .green-text {
+    color: green;
+}
+        .yellow-text {
+    color: yellow;
+}
+.purple-text {
+    color: purple;
+}
+.orange-text {
+    color: orange;
+}
+        .pink-text {
+    color: pink;
+}
+
+
+
+.video-player {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+/* @media (min-aspect-ratio: 16/9) {
+  .video-player {
+    width: 100vw;
+    height: 56.25vw;
+  }
+} */
+
+/* @media (max-aspect-ratio: 16/9) {
+  .video-player {
+    width: 768px;
+    height: 500px;
+  }
+} */
+
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+    
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+     <link rel="icon" href="static/image/github-mark.png" type="image/x-icon">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+</head>
+<body>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">Task-Oriented Adaptive Learning of Robot Manipulation Skills</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+             Kexin Jin<sup>1</sup>,</span>
+            <span class="author-block">
+             Guohui Tian<sup>2</sup>,</span>
+            <span class="author-block">
+              Bin Huang <sup>2</sup>,
+            </span>
+            <span class="author-block">
+              Yongcheng Cui<sup>3</sup>,
+            </span>
+            <span class="author-block">
+              Xiaoyu Zheng<sup>4</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+<!--             <span class="author-block"><sup>1</sup>Baidu RAL,</span> -->
+            <span class="author-block"><sup>1</sup>Shandong University</span>
+          </div>
+            
+         <div class="is-size-5 publication-authors">
+                        <span class="author-block">
+                                    <span class="icon">
+                                        <i class="fa fa-envelope"></i>
+                                    </span>
+                            Corresponding authors: kx.jin@mail.sdu.edu.cn; g.h.tian@sdu.edu.cn;huangbin@sdu.edu.cn;cuiyc@mail.sdu.edu.cn;202334997@mail.sdu.edu.cn
+                        </span>
+                        </div>
+          <div class="column has-text-centered">
+            <div class="publication-links">
+
+
+              <span class="link-block">
+                <a href="https://github.com/JKX-yy/ITN"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code </span>
+                  </a>
+              </span>
+
+              <span class="link-block">
+                <a href="Task-Oriented Adaptive Learning of Robot Manipulation Skills.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>PDF</span>
+                </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <figure style="display: flex; justify-content: center;">
+         <a href="ITS.png"><img src="ITS.png" width="900px"></a>
+      </figure>
+      <h2 class="subtitle has-text-centered">
+         Task-Oriented Adaptive Learning of Robot Manipulation Skills
+      </h2>
+    </div>
+  </div>
+</section>
+    
+<div class="columns is-centered has-text-centered">
+  <div class="column is-two-thirds">
+    <h2 class="title is-3">Video</h2>
+    <video id="dollyzoom" autoplay controls muted allowfullscreen height="100%">
+      <source src="static/论文视频-新.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+ <!-- 显示加粗的线条 -->
+    <hr>
+
+
+   <section class="section">
+        <div class="container is-max-desktop">
+            <!-- Abstract. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p style="font-size: 125%">
+          Robots' working conditions and manipulation tasks are constantly changing in industrial environments. For robots to learn skills from scratch based on new task commands is a slow process that relies heavily on human assistance. Therefore, developing a mechanism that can adapt to different manipulation tasks and autonomously and quickly learn new skills can effectively address the issue of low efficiency in robot skill learning and enhance the robot's adaptive capabilities. This paper proposes a general Intelligent Transfer System (ITS) that enables robots to learn new skills rapidly and autonomously in dynamic tasks. ITS integrates Large Language Models (LLMs) with transfer reinforcement learning, leveraging LLMs' intelligence and prior skills knowledge. It can comprehend previously unseen task commands and automatically generate a process-oriented reward function based on task reward_components for each task, enabling the autonomous learning of new skills while eliminating the need to design hierarchical sub-processes for complex tasks. In addition, an Intelligent Transfer Network (ITN) is designed within ITS to extract knowledge of relevant skills and accelerate the learning of new ones. We systematically evaluate our method in the simulation environment. The results demonstrate that it can autonomously and efficiently learn unseen skills without relying on pre-programmed behavior, achieving true creativity while improving the time efficiency of two major tasks by 72.22% and 65.17% compared to learning from scratch.   
+          
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+            <h3 class="title">Algorithm</h3>
+              <p style="font-size: 125%;">
+        ITS generates a process-oriented reward function for the new task and accelerates learning.
+      </p>
+      <figure style="display: flex; justify-content: center;">
+         <a href="伪代码.png"><img src="伪代码.png" width="300px"></a>
+      </figure>
+<!--       <h2 class="subtitle has-text-centered">
+         Task-Oriented Adaptive Learning of Robot Manipulation Skills
+      </h2> -->
+    </div>
+  </div>
+</section>
+
+      <section class="section" style="flex: 1;">
+    <div class="container is-max-desktop">
+      <h3 class="title">Dataset</h3>
+                <br>
+            <span style="font-size: 125%">
+                 We have constructed a dataset containing 1000 instructions of task-reward_components. Each instruction includes task command information and the corresponding reward_components, as shown in the figure below. The dataset can be accessed in the <a href="https://github.com/JKX-yy/ITN">code</a>.
+
+                </span>
+                     <br>
+
+              <br>
+      <h2>Example of a Single Data Instruction in JSON Code Block</h2>
+                     <br>
+        
+    <pre><code>
+{
+    "instruction": "For the continuous operation task of the robot, according to the input task command, all the distance calculation components involved are listed step by step according to the execution order.",
+    "input": "The three small, medium and large gears on the table are pushed to the specified position in turn.",
+    "output": "1. Calculate the distance between the jaws and the small gear: distance_finger_to_small_gear\n2. Calculate the distance between the small gear and the small gear's target location: distance_small_gear_to_small_location\n3. Calculate the distance between the jaws and the medium gear: distance_finger_to_medium_gear\n5. Calculate the distance between the medium gear and the target location of the medium gear: distance_medium_gear_to_mediun_location\n5. Calculate the distance between the jaws and the large gear: distance_finger_to_large_gear\n6. Calculate the distance  between the large gear and the target location of the large gear: distance_large_gear_to_large_location"
+  }
+                </code></pre>
+
+         
+                      <br>
+      <h2>  <span style="font-weight: bold"> Reward_components Generation Comparison: Reward_components Generation without Dataset Fine-tuning (LLaMA) vs.  Reward_components  Generation with Dataset Fine-tuning (LLaMA)</span> </h2>
+                     <br>
+<!--   奖励组件生成对比 -->
+
+            <section class="hero teaser">
+              <div class="container is-max-desktop">
+                <div class="hero-body">
+                  <figure style="display: flex; justify-content: center;">
+                     <a href="static/微调前.png"><img src="static/微调前.png" width="900px"></a>
+                  </figure>
+                  <h2 class="subtitle has-text-centered">
+                     Not Fine-tuned
+                  </h2>
+                </div>
+              </div>
+            </section>
+
+                    <section class="hero teaser">
+              <div class="container is-max-desktop">
+                <div class="hero-body">
+                  <figure style="display: flex; justify-content: center;">
+                     <a href="static/微调后的奖励组件生成.png"><img src="static/微调后的奖励组件生成.png" width="900px"></a>
+                  </figure>
+                  <h2 class="subtitle has-text-centered">
+                      Fine-tuned
+                  </h2>
+                </div>
+              </div>
+            </section>
+
+                        <br>
+            <span style="font-size: 125%">
+               Reward_components generated by LLaMA without fine-tuning are biased towards description and cannot be directly used for reward function generation. However, LLaMA, fine-tuned with our carefully designed reward_components dataset, can accurately generate reward_components that can be directly used for reward function generation.                </span>
+                     <br>
+        
+        
+        
+    </div>
+  </section>
+    
+
+    
+<!-- 奖励函数生成实验 -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h3 class="title">Reward Function Generation Experiment</h3>
+      
+      <p style="font-size: 125%">
+In this experiment, we list the generator's reward optimization process and compare the reward function generated by the generator with the reward function generated by Eureka and the manually designed reward function.
+</p>
+                <!--  奖励组件使用的有效提示-->
+      
+                     <br>
+                    <span style="font-size: 125%">
+                         <span style="font-weight: bold"> Effective prompt for using reward_components </span> : To make the generator make full use of the reward_components obtained by fine-tuning LLaMA, we give a simple example as a prompt of the use of reward_components and can replace the reward _omponents according to different tasks.
+                    </span>
+                    <br>
+
+                              <pre><code>
+@torch.jit.script
+def compute_reward(fingertip_midpoint_pos: Tensor, nut_pos: Tensor, bolt_tip_pos: Tensor) -> Tuple[Tensor, Dict[str, Tensor]]:
+    
+    # Adjusted temperature parameters for reward transformations
+    temp_pick = torch.tensor(0.1)  # Increased to make initial progress more rewarding
+    temp_place = torch.tensor(0.4)  # Increase, make this step more rewarding
+
+    # Calculate Distance Based on reward_components
+    distance_finger_to_nut = torch.norm(fingertip_midpoint_pos - nut_pos, p=2, dim=-1)
+    distance_nut_to_bolttip = torch.norm(nut_pos - bolt_tip_pos, p=2, dim=-1)
+
+    # Adjusted rewards for each stage of the task with new scaling
+    reward_pick = -distance_finger_to_nut 
+    reward_place = -distance_nut_to_bolttip
+
+    # Transform rewards with exponential function to normalize and control scale
+    reward_pick_exp = torch.exp(reward_pick / temp_pick)
+    reward_place_exp = torch.exp(reward_place / temp_place)
+
+    # Combine rewards for total reward, ensuring sequential completion by multiplication
+    total_reward = reward_pick_exp  * reward_place_exp
+
+    # reward_components dictionary
+    rewards_dict = {
+        "reward_pick": reward_pick_exp,
+        "reward_place": reward_place_exp,}
+
+    return total_reward, rewards_dict
+
+      
+                                    </code></pre>
+      
+
+                <!--   生成器对简单技能的奖励函数生成和优化过程 -->
+                  <br>
+            <span style="font-size: 125%">
+                <span style="font-weight: bold; color: #FFA500;"> 1. The generator's reward function generation and optimization process for simple skills:</span> 
+            </span>
+            <br>
+             <br>
+            <span style="font-size: 125%">
+                 <span style="font-weight: bold"> Task description </span> : There is an M12 nut on the table, and the goal of Franka's robotic arm is first to pick up the M12 nut from the table and raise the nut to the point where the height from the table is the height of the bolt.
+            </span>
+            <br>
+
+
+      
+            <br>
+            <span style="font-size: 125%">
+                 <span style="font-weight: bold"> Environmental observation code </span> : The environment observation code includes the pose information of the Panda arm's gripper and the object's pose information.
+            </span>
+            <br>
+
+                
+    <pre><code>
+class FactoryTaskNutBoltPick(FactoryEnvNutBolt, FactoryABCTask):
+    """Rest of the environment definition omitted."""
+    def compute_observations(self):
+        """Compute observations."""
+        obs_tensors = [
+
+                       self.fingertip_midpoint_pos, 
+                       self.fingertip_midpoint_quat,  
+                       self.fingertip_midpoint_linvel, 
+                       self.fingertip_midpoint_angvel,
+                       self.bolt_tip_pos, 
+                       self.bolt_tip_quat, 
+                       self.nut_pos,
+                       self.nut_quat,
+                       ]
+        self.obs_buf = torch.cat(obs_tensors, dim=-1)  
+        pos=self.obs_buf.size()
+        com_vector=torch.full([pos[0],self.num_observations-pos[1]],0.0).to(self.device)
+        self.obs_buf = torch.cat((self.obs_buf,com_vector),-1)
+        return self.obs_buf
+                </code></pre>
+
+
+
+                <!--  优化过程-->
+                          <br>
+                    <span style="font-size: 125%">
+                         <span style="font-weight: bold"> Reward function optimization process    </span>: Taking the task NutBolt _ Pick task as an example, the process of the generator optimizing the reward function is shown.
+                    </span>
+                    <br>
+
+                        <figure style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
+                            <div style="text-align: center;">
+                                <a href="static/1.0468.png"><img src="static/1.0468.png" width="200px"></a>
+                                <figcaption  style="color: green;">Epoch1 Task success rate : 52.3 %</figcaption>
+                            </div>
+                            <div style="text-align: center;">
+                                <a href="static/1.21875.png"><img src="static/1.21875.png" width="200px"></a>
+                                <figcaption  style="color: green;">Epoch2 Task success rate : 60.9 %</figcaption>
+                            </div>
+                            <div style="text-align: center;">
+                                <a href="static/1.375.png"><img src="static/1.375.png" width="200px"></a>
+                                <figcaption  style="color: green;">Epoch3 Task success rate : 88.7 %</figcaption>
+                            </div>
+                            <div style="text-align: center;">
+                                <a href="static/1.453.png"><img src="static/1.453.png" width="200px"></a>
+                                <figcaption  style="color: green;"> Epoch4 Task success rate : 91.5 %</figcaption>
+                            </div>
+                        </figure>
+
+
+                  
+
+          <pre><code>
+We trained a RL policy using the provided reward function code and tracked the values of the individual components in the reward function as well as global policy metrics such as success rates and episode lengths after every 11 epochs and the maximum, mean, minimum values encountered:
+reward_pick: ['0.05', '0.06', '0.17', '0.40', '0.68', '0.72', '0.77', '0.79', '0.78', '0.79', '0.79'], Max: 0.80, Mean: 0.57, Min: 0.05 
+reward_lift: ['0.83', '0.83', '0.83', '0.83', '0.83', '0.83', '0.83', '0.84', '0.84', '0.86', '0.85'], Max: 0.86, Mean: 0.84, Min: 0.83 
+task_score: ['0.00', '0.00', '0.00', '0.02', '0.30', '0.53', '0.67', '0.77', '0.80', '0.87', '0.77'], Max: 0.91, Mean: 0.46, Min: 0.00 
+episode_lengths: ['119.00', '119.00', '119.00', '119.00', '119.00', '119.00', '119.00', '119.00', '119.00', '119.00', '119.00'], Max: 119.00, Mean: 119.00, Min: 119.00 
+Please carefully analyze the policy feedback and provide a new, improved reward function that can better solve the task. Some helpful tips for analyzing the policy feedback:
+    (1) If the success rate is always close to zero, it means that the sequential execution has failed to reach the last step, and you can infer that the task execution failed at the first step by analyzing the rewards for each subtask
+    (2) If the values for a certain reward_components are near identical throughout, then this means RL is not able to optimize this component as it is written. You may consider
+        (a) Changing its scale or the value of its temperature parameter
+        (b) Re-writing the reward_components 
+        (c) Discarding the reward_components
+    (3) If some reward_components' magnitude is significantly larger, then you must re-scale its value to a proper range
+Please analyze each existing reward_components in the suggested manner above first, and then write the reward function code. The output of the reward function should consist of two items:
+    (1) the total reward,
+    (2) a dictionary of each individual reward_components(reward dictionary for each sub-process)..
+The code output should be formatted as a python code string: "```python ... ```".
+                </code></pre>
+
+
+
+
+
+      
+
+    
+        <!--复杂任务奖励生成和组件分析-->
+                          <br>
+                    <span style="font-size: 125%">
+                        <span style="font-weight: bold; color: #FFA500;"> 2. Complex Task Reward Generation (Generator) and Component Analysis:</span>
+                    </span>
+                    <br>
+
+                        <br>
+                        <span style="font-size: 125%">
+                            <span style="font-weight: bold">  Task description    </span>: Push the three small, medium, and large sized gears on the table in sequence to their designated positions.
+                        </span>
+                        <br>
+
+<!--合并-->
+
+      <!--  -->
+<div style="width: 100%;">
+
+  <!-- Environmental observation code 和 Generated reward_components 在同一行 -->
+  <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+
+    <!-- Environmental observation code 部分 -->
+    <div style="width: 48%;">
+      <p style="font-size: 100%; font-weight: bold;">Environmental observation code :</p>
+      <pre style="background-color: #f5f5f5; padding: 10px; border-radius: 5px; white-space: pre-wrap; line-height: 1.5;">
+obs_tensors = [self.fingertip_midpoint_pos,
+               self.fingertip_midpoint_quat,
+               self.fingertip_midpoint_linvel,
+               self.fingertip_midpoint_angvel,
+               self.gear_small_pos,
+               self.gear_small_quat,
+               self.gear_medium_pos,
+               self.gear_medium_quat,
+               self.gear_large_pos,
+               self.gear_large_quat,
+               self.small_location_pos,
+               self.small_location_quat,
+               self.medium_location_pos,
+               self.medium_location_quat,
+               self.large_location_pos,
+               self.large_location_quat]
+      </pre>
+    </div>
+
+    <!-- Generated reward_components 部分 -->
+    <div style="width: 48%;">
+      <p style="font-size: 100%; font-weight: bold;">Generated reward_components :</p>
+      <pre style="background-color: #f5f5f5; padding: 10px; border-radius: 5px; white-space: pre-wrap; line-height: 1.5;">
+1. Calculate the distance between the jaws and the small gear: distance_finger_to_small_gear
+2. Calculate the distance between the small gear and the small gear’s target location: distance_small_gear_to_small_location
+3. Calculate the distance between the jaws and the medium gear: distance_finger_to_medium_gear
+4. Calculate the distance between the medium gear and the target location of the medium gear: distance_medium_gear_to_medium_location
+5. Calculate the distance between the jaws and the large gear: distance_finger_to_large_gear
+6. Calculate the distance between the large gear and the target location of the large gear: distance_large_gear_to_large_location
+      </pre>
+    </div>
+  </div>
+</div>
+
+<!--  -->
+      
+
+
+      
+                                <br>
+                    <span style="font-size: 125%">
+                       <span style="font-weight: bold"> Generated reward function： </span> 
+                        </span> 
+       <br>
+<pre><code>
+    ...
+       temp_pick = torch.tensor(0.1)
+        temp_carry = torch.tensor(0.2)
+        temp_place = torch.tensor(0.3)
+        # Calculate distances
+        distance_finger_to_small_gear = torch.norm(gear_small_pos - fingertip_midpoint_pos, p=2, dim=-1)
+        distance_small_gear_to_small_location = torch.norm(gear_small_pos - self.small_location_pos, p=2, dim=-1)
+        distance_finger_to_medium_gear = torch.norm(gear_medium_pos - fingertip_midpoint_pos, p=2, dim=-1)
+        distance_medium_gear_to_mediun_location = torch.norm(gear_medium_pos - self.medium_location_pos, p=2, dim=-1)
+        distance_finger_to_large_gear = torch.norm(gear_large_pos - fingertip_midpoint_pos, p=2, dim=-1)
+        distance_large_gear_to_large_location = torch.norm(gear_large_pos - self.large_location_pos, p=2, dim=-1)
+
+        # Define rewards for small gear
+        reward_pick_small = -distance_finger_to_small_gear
+        reward_carry_small = distance_small_gear_to_small_location
+        reward_place_small = -torch.abs(distance_small_gear_to_small_location - torch.tensor(0.0))  
+    
+        # Transform small gear rewards
+        reward_pick_small_exp = torch.exp(reward_pick_small /temp_pick)
+        reward_carry_small_exp = torch.exp(reward_carry_small /temp_carry)
+        reward_place_small_exp = torch.exp(reward_place_small /temp_place)
+        
+        # Define rewards for medium gear
+        reward_pick_medium = -distance_finger_to_medium_gear
+        reward_carry_medium = distance_medium_gear_to_mediun_location
+        reward_place_medium = -torch.abs(distance_medium_gear_to_mediun_location - torch.tensor(0.0))  # Ideally, this distance is zero
+
+        # Transform medium gear rewards
+        reward_pick_medium_exp = torch.exp(reward_pick_medium /temp_pick)
+        reward_carry_medium_exp = torch.exp(reward_carry_medium /temp_carry)
+        reward_place_medium_exp = torch.exp(reward_place_medium /temp_place)
+        
+        # Define rewards for large gear
+        reward_pick_large = -distance_finger_to_large_gear
+        reward_carry_large = distance_large_gear_to_large_location
+        reward_place_large = -torch.abs(distance_large_gear_to_large_location - torch.tensor(0.0))  # Ideally, this distance is zero
+        
+        # Transform large gear rewards
+        reward_pick_large_exp = torch.exp(reward_pick_large/temp_pick )
+        reward_carry_large_exp = torch.exp(reward_carry_large /temp_carry)
+        reward_place_large_exp = torch.exp(reward_place_large /temp_place)
+    ...
+ </code></pre>
+
+
+          <!-- 生成失败-->
+                          <br>
+                    <span style="font-size: 125%">
+                         <span style="font-weight: bold"> Reward function generation failure    </span>: The generator may generate attributes that are not present in the observation space as part of the design of the reward function. At this point, the cause of the erroneous generation needs to be identified and fed back in a timely manner, and a new reward function needs to be regenerated.ion and feedback on the cause of the error generation. </span>
+                    <br>
+
+
+                      <pre><code>
+ self.rew_buf[:], self.rew_dict = compute_reward(self.fingertip_midpoint_pos, self.gear_small_pos, self.gear_small_target_pos, self.gear_medium_pos, self.gear_medium_target_pos, self.gear_large_pos, self.gear_large_target_pos)
+AttributeError: 'FactoryTaskGearsPickPlaceGPT' object has no attribute 'gear_small_target_pos'
+                </code></pre>
+      
+
+      
+<!--       3.对比分析 -->
+
+           <br>
+                      <span style="font-size: 125%">
+                        <span style="font-weight: bold; color: #FFA500;"> 3.  Compare the reward function generated by the generator with the reward function generated by Eureka and the manually designed reward function:</span>
+                    </span>
+                    <br>
+              <br>
+       <figure style="display: flex; justify-content: center;">
+         <a href="static/image/图片.png"><img src="static/image/图片.png" width="900px"></a>
+      </figure>
+                       <br>
+                      <span style="font-size: 125%">
+                          Compared with the reward function designed by humans, the other two methods are superior. By comparing the performance of Eureka and the generator, since our method introduces a reward_components with a human experience level, which is more reliable than Eureka's random generation of rewards, and the generated code is more readable, we call Process-oriented reward function generation based on reward_components guidance.
+                    </span>
+                    <br>
+                        
+  </div>
+</section>
+
+    
+<section class="section">
+  <div class="container is-max-desktop">
+    <h3 class="title">Transfer Learning Experiment Settings</h3>
+      <p style="font-size: 125%">
+  We utilize the four basic skills and complex skills of the industrial assembly of robots to compose the entire experiment. Among them, the sequential complex skills are combinations of various basic skills.
+</p>
+      <br>
+    <div class="columns is-centered">
+      <!-- Matting. -->
+      <div class="column">
+        <h4 class="title is-4" style="color: red;">Pick</h4>
+        <div class="columns is-centered">
+          <div class="column content">
+            <video id="video1" class="video-player" autoplay controls muted loop playsinline>
+              <source src="static/basic_skill/pick-.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <h4 class="title is-4"style="color: orange;">Place</h4>
+         <video id="video2" class="video-player" autoplay controls muted loop playsinline>
+            <source src="static/image/place.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <h4 class="title is-4"style="color: purple;">Screw</h4>
+          <video id="video3" class="video-player" autoplay controls muted loop playsinline>
+            <source src="static/image/screw.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <h4 class="title is-4"style="color: green;">Insert</h4>
+          <video id="video4" class="video-player" autoplay controls muted loop playsinline>
+            <source src="static/image/basic_insert2.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+    <!--/ Matting. -->
+      <br>
+      <h2 class="subtitle has-text-centered">
+         Table 1 lists some basic skills as well as complex skills
+      </h2>
+          <figure style="display: flex; justify-content: center;">
+         <a href="static/image/task-f.png"><img src="static/image/task-f.png" width="900px"></a>
+      </figure>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h3 class="title">Basic Skill Experiments</h3>
+    <p style="font-size: 125%">
+      In the video below, we demonstrate each of the four basic skills to operate different models of mechanical parts using the reward function generated by the generator.
+    </p>
+      <br>
+    <h5 class="title is-4" style="color: red;">NutBolt_Pick</h5>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+           <video id="video1" class="video-player" autoplay controls muted loop playsinline>
+              <source src="static/vedio/pick1.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">   
+          <video id="video2" class="video-player" autoplay controls muted loop playsinline>
+            <source src="static/vedio/pick2.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <video id="video3" class="video-player" autoplay controls muted loop playsinline>
+            <source src="static/vedio/pick5.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+         <video id="video4" class="video-player" autoplay controls muted loop playsinline>
+            <source src="static/vedio/pick4.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+    
+    <h5 class="title is-4"style="color: orange;">NutBolt_Place</h5>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+           <video id="video1" class="video-player" autoplay controls muted loop playsinline>
+              <source src="static/basic_skill/-place_m8.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">   
+         <video id="video2" class="video-player" autoplay controls muted loop playsinline>
+            <source src="static/basic_skill/-place_m12.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+         <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+            <video id="video3" class="video-player" autoplay controls muted loop playsinline>
+              <source src="static/vedio/place1.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">   
+          <video id="video4" class="video-player" autoplay controls muted loop playsinline>
+            <source src="static/basic_skill/-place_m12.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+
+<h5 class="title is-4" style="color: green;">Peghole_Insert</h5>
+<div class="columns is-centered">
+  <div class="column">
+    <div class="columns is-centered">
+      <div class="column content">
+        <video id="video1" class="video-player" autoplay controls muted loop playsinline>
+          <source src="static/basic_skill/-round_12mm.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="content">   
+      <video id="video2" class="video-player" autoplay controls muted loop playsinline>
+        <source src="static/basic_skill/-rect_16mm.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <div class="column">
+    <div class="content"> 
+        <video id="video3" class="video-player" autoplay controls muted loop playsinline>
+          <source src="static/vedio/insert1.mp4" type="video/mp4">
+        </video>
+   </div>
+  </div>
+  <div class="column">
+    <div class="content">   
+      <video id="video4" class="video-player" autoplay controls muted loop playsinline>
+        <source src="static/vedio/insert1.mp2" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</div>
+
+      
+    <h5 class="title is-4"style="color: purple;">NutBolt_Screw</h5>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+            <video id="video1" class="video-player" autoplay controls muted loop playsinline>
+              <source src="static/basic_skill/-screw_m12mp4.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">   
+         <video id="video2" class="video-player" autoplay controls muted loop playsinline>
+            <source src="static/basic_skill/-screw_m16.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+        <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+            <video id="video3" class="video-player" autoplay controls muted loop playsinline>
+              <source src="static/vedio/screw1.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">   
+          <video id="video4" class="video-player" autoplay controls muted loop playsinline>
+            <source src="static/basic_skill/-screw_m16.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+        
+        </div>
+  
+      
+  </div>
+</section>
+<br>
+<section class="section">
+  <div class="container is-max-desktop">
+    <h3 class="title">Complex Experiments</h3>
+    <p style="font-size: 125%">
+In the following video, we show two complex skills composed of basic skills: the NutBolt task and the PegHole task. The robot operates parts of different types and sizes. In each task, ITS uses the reward function generated by the generator and uses the skills of the source domain to transfer learning to the target task. The entire process, from receiving a new task command to the robot autonomously and quickly completing this task, was performed without human involvement.
+
+    </p>
+      <br>
+    <h5 class="title is-4"style="color: red;">NutBolt_PickPlace</h5>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+           <video id="video1" class="video-player" autoplay controls muted loop playsinline>
+              <source src="static/complex_skill/-m12.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">   
+         <video id="video2" class="video-player" autoplay controls muted loop playsinline>
+            <source src="static/complex_skill/--m12.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <video id="video3" class="video-player" autoplay controls muted loop playsinline>
+            <source src="static/image/nutbolt_2020246291714131.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+         <video id="video4" class="video-player" autoplay controls muted loop playsinline>
+            <source src="static/image/nutbolt_2020246291714131.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+
+<!--        -->
+<!-- <div class="container is-max-desktop">
+ <h5 class="title is-4"style="color: red;">NutBolt_PickPlace</h5>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+            <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+              <source src="static/complex_skill/-m12.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">   
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="static/complex_skill/--m12.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+  </div> -->
+
+<!--     round insert -->
+    <h5 class="title is-4"style="color: green;">Round_PegHole_PickPlaceInsert</h5>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+           <video id="video1" class="video-player" autoplay controls muted loop playsinline>
+              <source src="static/complex_skill/-round_12mm.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">   
+        <video id="video2" class="video-player" autoplay controls muted loop playsinline>
+            <source src="static/complex_skill/-round_16mm.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <video id="video3" class="video-player" autoplay controls muted loop playsinline>
+            <source src="static/complex_skill/-round_12mm.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <video id="video4" class="video-player" autoplay controls muted loop playsinline>
+            <source src="static/complex_skill/-round_16mm.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <h5 class="title is-4"style="color: purple;">Rectangular_PegHole_PickPlaceInsert</h5>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+          <video id="video1" class="video-player" autoplay controls muted loop playsinline>
+              <source src="static/complex_skill/rect_12mm.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">   
+         <video id="video2" class="video-player" autoplay controls muted loop playsinline>
+            <source src="static/complex_skill/rect_16mm.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    <div class="column">
+        <div class="content">
+          <video id="video3" class="video-player" autoplay controls muted loop playsinline>
+            <source src="static/complex_skill/rect_12mm.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+         <video id="video4" class="video-player" autoplay controls muted loop playsinline>
+            <source src="static/complex_skill/rect_16mm.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div> 
+    </div>
+
+
+
+      
+  </div>
+</section>
+
+<!-- 对比试验 -->
+    <section class="section">
+  <div class="container is-max-desktop">
+    <h3 class="title" >Comparative Experiment</h3>
+    <p style="font-size: 125%">
+     In the following videos, we give the results of applying the No_transfer  vs ITN(ours)  in two tasks, NutBolt_PickPlace and PegHole_Insert.Applying ITN's system to learn new skills is much more efficient.
+    </p>
+      <br>
+    <h5 class="title is-4"style="color: orange;">NutBolt_PickPlace (NO_Transfer  VS  ITN)</h5>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+            <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+              <source src="static/image/no_transfer_nutbolt.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">   
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="static/image/IYN_nutbolt.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+<!--         对比分析 -->
+  </div>
+</section>
+
+<section class="section">
+<div class="container is-max-desktop">
+<h5 class="title is-4"style="color: blue;">PegHole_PickPlaceInsert (NO_Transfer  VS  ITN)</h5>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+            <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+              <source src="static/image/no_transfer_insert.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">   
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="static/image/ITN_insert.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+        
+  </div>
+</section>
+
+ <section class="section">
+  <div class="container is-max-desktop">
+
+
+    <!--       3.注意力 -->
+
+           <br>
+                      <span style="font-size: 125%">
+                        <span style="font-weight: bold; color: #FFA500;">  Attention allocation.</span>
+       This graph illustrates the changes in the attention values assigned by ITN to different subskills in a cycle in the NutBolt and PegHole tasks. 
+                    </span>
+                    <br>
+              <br>
+       <figure style="display: flex; justify-content: center;">
+         <a href="static/attention.png"><img src="static/attention.png" width="900px"></a>
+      </figure>
+                       <br>
+                      <span style="font-size: 125%">
+                         The figure shows ITN's policy allocation concerns. The data, derived from a single interaction cycle after training, stabilized and revealed that Intelligent Attention allocated attention to source skills differently at various stages of the target task. This distribution is similar to human experience. ITN successfully adapted to various tasks by adjusting the attention values of source skills, enabling robots to master new tasks quickly. 
+                      </span>
+                    <br>
+
+      </div>
+</section>
+
+
+
+    
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+      <p style="font-size: 125%">
+  We compare ITN(ours) with two state-of-the-art  learning methods FSAT,H-DRLN,The following figure shows the performance of these three methods in two tasks.
+</p>
+      <br>
+<h3 class="title is-4"><span class="dvima"style="color: red;">Comparison With Other Advanced Methods</span></h3>
+    <img src="static/image/compare.png" class="static/image/compare.png" alt=""
+        style="display: block; margin-left: auto; margin-right: auto" />
+    <br>
+    <span style="font-size: 125%">
+        <span style="font-weight: bold"> ITN is superior to other methods. </span> Several methods of learning significantly outperformed direct learning. Although FSAT performed best in early training by selecting data closer to the target domain to initialize the policy, it was surpassed by ITN after a few dozen iterations. FSAT focused on extracting shared features and excelled in solving transfer problems across manipulated objects, whereas ITN focused on exploring a generalized transfer approach across tasks. H-DRLN attempted to receive the current environment state as input and output the probabilities of new actions and source skills, reusing the subskill with the highest probability value. Although this approach incorporated learning new strategies, the reuse approach was very limited in terms of usage scenarios. ITN was not dependent on specific skills and could fully adapt to task changes.
+    </span>
+    <br>
+
+       <img src="static/表1.png" class="static/表1.png" alt=""
+        style="display: block; margin-left: auto; margin-right: auto" />
+    <br>
+    <span style="font-size: 125%">
+        <span style="font-weight: bold"> Utilizing the ITN method to learn skills can result in a high success rate in a short period of time. </span> Utilizing the ITN method to learn skills can result in a high success rate in a short period. Our (ITN) method excelled in the early and middle stages, achieving an initial success rate of 86.64% and 79.56% in two tasks, significantly higher than the other methods. As training progressed, the success rate of all methods rose, but ITN achieved a higher success rate at an earlier stage, demonstrating superior time efficiency. The method is highly anticipated for its practical value.
+        <br>
+        <br>
+        <br>
+    <h4 class="title" >Other Experiments</h4>
+        <br>
+      <h3 class="title is-4"><span class="dvima"style="color: green;">Verification Experiment</span></h3>
+    <img src="static/abla.png" class="static/abla.png" alt=""
+        style="display: block; margin-left: auto; margin-right: auto" />
+    <br>
+    <span style="font-size: 125%">
+          <span style="font-weight: bold">ITN had the ability to quickly master new tasks.</span>The learning speed (the epoch at which the curve reached stability) of ITN was significantly better than No\_Transfer in both tasks.PST simulates the absence of prior skills. The results demonstrated that ITN learns much faster than No\_Transfer with just a few prior skills, indicating that ITN can rapidly acquire new skills that are not based on existing ones. This capability is a significant goal and breakthrough of our work, as most previous studies have relied on fixed skill combinations. Comparing the performance of ITN with NIA demonstrated the superior effectiveness of integrating an Intelligent Attention model over a fixed value. The performance comparison between NIA and DFS confirmed the strong feature fusion capability of the feature fusion layer. ITN improved time efficiency by approximately 72.22\% and 65.17\% compared to No\_Transfer in the respective tasks.
+           </span>
+        <br>
+  <br>
+      <h3 class="title is-4"><span class="dvima"style="color: purple;">Generalization test experiment</span></h3>
+    <img src="static/ge.png" class="static/ge.png" alt=""
+        style="display: block; margin-left: auto; margin-right: auto" />
+    <br>
+    <span style="font-size: 125%">
+      <span style="font-weight: bold"> ITN had the ability to transfer across tasks.</span> Curves 2 and 3 revealed that, although the target task and the source skills had different manipulation goals, ITN effectively utilized shared action features for transfer. Based on the action feature level, this transfer effectively addressed various manipulation problems encountered by robots in dynamic tasks. Curve 4 indicated that the robot quickly achieved high rewards when operating unseen new parts, highlighting ITN's efficiency in handling task variations. Curve 5 showed the best learning speed and the most stable 
+learning curve throughout the training process compared to the other curves, suggesting that the multiple-skill fusion strategy was the most effective, significantly enhancing the learning efficiency and performance of the robot manipulation tasks.
+
+    <br>
+      
+  </div>
+</section> -->
+
+    
+ <footer class="footer">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column">
+                    <div class="content has-text-centered">
+                        <p>
+                            Website template borrowed from <a
+                                href="https://eureka-research.github.io/">Eureka</a> and
+                            <a href="https://rlingua.github.io/">Rlingua</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
