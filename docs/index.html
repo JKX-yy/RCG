@@ -331,7 +331,7 @@ The following will present four types of instructions in the dataset: clear, amb
           Push the three small, medium, and large-sized gears on the table in sequence to their designated positions.</span>
                     </span>
                     <br>
-        
+            <br>
                 <div class="columns is-centered has-text-centered">
                   <div class="column is-two-thirds">
 
@@ -369,6 +369,7 @@ The following will present four types of instructions in the dataset: clear, amb
           Push the three small, medium, and large-sized gears on the table in sequence to their designated positions.</span>
                     </span>
                     <br>
+            <br>
                 <div class="columns is-centered has-text-centered">
                   <div class="column is-two-thirds">
 
@@ -411,57 +412,15 @@ The following will present four types of instructions in the dataset: clear, amb
       <p style="font-size: 125%">
 In this experiment, we outlined the process of reward generation and optimization using the Reward Function Generator (RFG) based on reward components.
 </p>
-                <!--  奖励组件使用的有效提示-->
-      
-                     <br>
-                    <span style="font-size: 125%">
-                         <span style="font-weight: bold"> Effective prompt for using reward_components </span> : To make the generator make full use of the reward_components obtained by fine-tuning LLaMA, we give a simple example as a prompt of the use of reward_components and can replace the reward _omponents according to different tasks.
-                    </span>
-                    <br>
-
-                              <pre><code>
-@torch.jit.script
-def compute_reward(fingertip_midpoint_pos: Tensor, nut_pos: Tensor, bolt_tip_pos: Tensor) -> Tuple[Tensor, Dict[str, Tensor]]:
-    
-    # Adjusted temperature parameters for reward transformations
-    temp_pick = torch.tensor(0.1)  # Increased to make initial progress more rewarding
-    temp_place = torch.tensor(0.4)  # Increase, make this step more rewarding
-
-    # Calculate Distance Based on reward_components
-    distance_fingertip_midpoint_to_nut = torch.norm(fingertip_midpoint_pos - nut_pos, p=2, dim=-1)
-    distance_nut_to_bolttip = torch.norm(nut_pos - bolt_tip_pos, p=2, dim=-1)
-
-    # Adjusted rewards for each stage of the task with new scaling
-    reward_pick = -distance_fingertip_midpoint_to_nut 
-    reward_place = -distance_nut_to_bolttip
-
-    # Transform rewards with exponential function to normalize and control scale
-    reward_pick_exp = torch.exp(reward_pick / temp_pick)
-    reward_place_exp = torch.exp(reward_place / temp_place)
-
-    # Combine rewards for total reward, ensuring sequential completion by multiplication
-    total_reward = reward_pick_exp  * reward_place_exp
-
-    # reward_components dictionary
-    rewards_dict = {
-        "reward_pick": reward_pick_exp,
-        "reward_place": reward_place_exp,}
-
-    return total_reward, rewards_dict
-
-      
-                                    </code></pre>
-      
-
                 <!--   生成器对简单技能的奖励函数生成和优化过程 -->
                   <br>
             <span style="font-size: 125%">
-                <span style="font-weight: bold; color: #FFA500;"> 1. The generator's reward function generation and optimization process for simple skills:</span> 
+                <span style="font-weight: bold; color: #FFA500;"> The reward function generation and optimization process of the RFG. </span> 
             </span>
             <br>
              <br>
             <span style="font-size: 125%">
-                 <span style="font-weight: bold"> Task description </span> : There is an M12 nut on the table, and the goal of Franka's robotic arm is first to pick up the M12 nut from the table and raise the nut to the point where the height from the table is the height of the bolt.
+                 <span style="font-weight: bold"> Task description </span> : Push the medium-sized gears on the table to the target position
             </span>
             <br>
 
@@ -479,16 +438,14 @@ class FactoryTaskNutBoltPick(FactoryEnvNutBolt, FactoryABCTask):
     """Rest of the environment definition omitted."""
     def compute_observations(self):
         """Compute observations."""
-        obs_tensors = [
-
-                       self.fingertip_midpoint_pos, 
+        obs_tensors = [self.fingertip_midpoint_pos,  
                        self.fingertip_midpoint_quat,  
                        self.fingertip_midpoint_linvel, 
                        self.fingertip_midpoint_angvel,
-                       self.bolt_tip_pos, 
-                       self.bolt_tip_quat, 
-                       self.nut_pos,
-                       self.nut_quat,
+                        self.gear_medium_pos,  
+                       self.gear_medium_quat,
+                        self.base_medium_bolt_tip_pos,
+                       self.base_medium_bolt_tip_quat,
                        ]
         self.obs_buf = torch.cat(obs_tensors, dim=-1)  
         pos=self.obs_buf.size()
@@ -502,31 +459,53 @@ class FactoryTaskNutBoltPick(FactoryEnvNutBolt, FactoryABCTask):
                 <!--  优化过程-->
                           <br>
                     <span style="font-size: 125%">
-                         <span style="font-weight: bold"> Reward function optimization process    </span>: Taking the task NutBolt _ Pick task as an example, the process of the generator optimizing the reward function is shown.
+                         <span style="font-weight: bold"> The generation  process of the reward function.    </span>: 
                     </span>
                     <br>
 
-                        <figure style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
-                            <div style="text-align: center;">
-                                <a href="static/1.0468.png"><img src="static/1.0468.png" width="200px"></a>
-                                <figcaption  style="color: green;">Epoch1 Task success rate : 52.3 %</figcaption>
-                            </div>
-                            <div style="text-align: center;">
-                                <a href="static/1.21875.png"><img src="static/1.21875.png" width="200px"></a>
-                                <figcaption  style="color: green;">Epoch2 Task success rate : 60.9 %</figcaption>
-                            </div>
-                            <div style="text-align: center;">
-                                <a href="static/1.375.png"><img src="static/1.375.png" width="200px"></a>
-                                <figcaption  style="color: green;">Epoch3 Task success rate : 88.7 %</figcaption>
-                            </div>
-                            <div style="text-align: center;">
-                                <a href="static/1.453.png"><img src="static/1.453.png" width="200px"></a>
-                                <figcaption  style="color: green;"> Epoch4 Task success rate : 91.5 %</figcaption>
-                            </div>
-                        </figure>
 
+<!--       原始LLMS  EUREKA -->
 
-                  
+            <section class="hero teaser">
+              <div class="container is-max-desktop">
+                <div class="hero-body">
+                  <figure style="display: flex; justify-content: center;">
+                     <a href="static/image/eureka生成.png"><img src="static/image/eureka生成.png" width="900px"></a>
+                  </figure>
+                  <h2 class="subtitle has-text-centered">
+                      Eureka
+                  </h2>
+                </div>
+              </div>
+            </section>
+
+      <br>
+      <h2>  <span style="font-weight: bold"> LLMs often struggle to automatically infer implicit dependency and sequence relationships (e.g., "manipulators → medium gear" and "medium gear → target position"). They also exhibit instability in identifying missing action subjects. This instability limits the reliability of LLMs in task planning and execution. </span> </h2>
+                     <br>
+      
+            <section class="hero teaser">
+              <div class="container is-max-desktop">
+                <div class="hero-body">
+                  <figure style="display: flex; justify-content: center;">
+                     <a href="static/image/本文.png"><img src="static/image/本文.png" width="900px"></a>
+                  </figure>
+                  <h2 class="subtitle has-text-centered">
+                      RFG
+                  </h2>
+                </div>
+              </div>
+            </section>
+
+      <br>
+      <h2>  <span style="font-weight: bold"> The method proposed in this paper leverages the accurately generated reward components from the RCG, demonstrating a high level of commands comprehension. It effectively handles ambiguous, complex, and specialized commands, rapidly generating reward functions capable of successfully completing tasks. </span> </h2>
+                     <br>
+
+                                  <!--  优化过程-->
+                          <br>
+                    <span style="font-size: 125%">
+                         <span style="font-weight: bold"> The  optimization process of the reward function.    </span>: 
+                    </span>
+                    <br>
 
           <pre><code>
 We trained a RL policy using the provided reward function code and tracked the values of the individual components in the reward function as well as global policy metrics such as success rates and episode lengths after every 11 epochs and the maximum, mean, minimum values encountered:
