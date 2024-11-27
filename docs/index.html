@@ -220,21 +220,48 @@
       <h3 class="title">Dataset</h3>
                 <br>
             <span style="font-size: 125%">
-                 We have constructed a dataset containing 1000 instructions of task-reward_components. Each instruction includes task command information and the corresponding reward_components, as shown in the figure below. The dataset can be accessed in the <a href="https://github.com/JKX-yy/ITN">code</a>.
-
+<!--                  We have constructed a dataset containing 1000 instructions of task-reward_components. Each instruction includes task command information and the corresponding reward_components, as shown in the figure below. The dataset can be accessed in the <a href="https://github.com/JKX-yy/ITN">code</a>. -->
+This dataset containing 10,000 industrial assembly commands, covering clear, ambiguous, complex, and specialized types of commands. The dataset includes both single-item and multi-item tasks, with over 200 industrial assembly components such as gears, washers, nuts, and nails.
                 </span>
                      <br>
 
+                        <br>
+            <span style="font-size: 125%">
+Each task command is annotated with computation components and conversion components based on the execution sequence. The following image shows the data saved in JSON format in our code.
+                </span>
+                     <br>
+        
+<!--数据集照片  -->
+  <section class="hero teaser">
+              <div class="container is-max-desktop">
+                <div class="hero-body">
+                  <figure style="display: flex; justify-content: center;">
+                     <a href="static/image/datasets.png"><img src="/static/image/datasets.png" width="900px"></a>
+                  </figure>
+                  <h2 class="subtitle has-text-centered">
+                     Not Fine-tuned
+                  </h2>
+                </div>
+              </div>
+            </section>    
+
+<!--四种指令示例  -->
+                        <br>
+            <span style="font-size: 125%">
+The following will present four types of instructions in the dataset: clear, ambiguous, complex, and specialized commands.
+                </span>
+                     <br> 
+<!--       第一种   -->
               <br>
-      <h2>Example of a Single Data Instruction in JSON Code Block</h2>
+      <h2>Examples of clear task commands</h2>
                      <br>
         
     <pre><code>
 {
-    "instruction": "For the continuous operation task of the robot, according to the input task command, all the distance calculation components involved are listed step by step according to the execution order.",
-    "input": "The three small, medium and large gears on the table are pushed to the specified position in turn.",
-    "output": "1. Calculate the distance between the jaws and the small gear: distance_finger_to_small_gear\n2. Calculate the distance between the small gear and the small gear's target location: distance_small_gear_to_small_location\n3. Calculate the distance between the jaws and the medium gear: distance_finger_to_medium_gear\n5. Calculate the distance between the medium gear and the target location of the medium gear: distance_medium_gear_to_mediun_location\n5. Calculate the distance between the jaws and the large gear: distance_finger_to_large_gear\n6. Calculate the distance  between the large gear and the target location of the large gear: distance_large_gear_to_large_location"
-  }
+  "instruction": "List all the distance calculations involved and write all the necessary judgments based on the input task for the robot's continuous operation task.",
+  "input": "The robotic arm first picks up the washer from the table and then places the washer on the bolt.",
+  "output": "1. Calculate the distance between the fingertip_midpoint and the washer: distance_fingertip_midpoint_to_washer\n2. Determine whether the fingertip_midpoint are close enough to the washer: is_fingertip_midpoint_close_washer\n3. Calculate the distance between the washer and the bolt: distance_washer_to_bolt\n4. Determine whether the washer is aligned with the bolt: is_washer_aligned_bolt"
+},
                 </code></pre>
 
          
