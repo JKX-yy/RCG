@@ -6,7 +6,7 @@
     <meta charset="utf-8">
       <meta name="keywords" content="Robotics, Reinforcement Learning, Large Language Model">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Task-Oriented Adaptive Learning of Robot Manipulation Skills</title>
+    <title> Reward Design Framework Based on Reward Components and Large Language Models</title>
     <style>
         /* 设置水平线的粗细为 5px */
         hr {
@@ -128,7 +128,7 @@
             <div class="publication-links">
 
 
-              <span class="link-block">
+<!--               <span class="link-block">
                 <a href="https://github.com/JKX-yy/ITN"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -136,10 +136,10 @@
                   </span>
                   <span>Code </span>
                   </a>
-              </span>
+              </span> -->
 
               <span class="link-block">
-                <a href="Task-Oriented Adaptive Learning of Robot Manipulation Skills.pdf"
+                <a href="docs/static/Reward Design Framework Based on Reward Components and Large Language Models.pdf"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -159,23 +159,23 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <figure style="display: flex; justify-content: center;">
-         <a href="ITS.png"><img src="ITS.png" width="900px"></a>
+         <a href="docs/static/image/整体框架.png"><img src="docs/static/image/整体框架.png" width="900px"></a>
       </figure>
       <h2 class="subtitle has-text-centered">
-         Task-Oriented Adaptive Learning of Robot Manipulation Skills
+         Reward Design Framework Based on Reward Components and Large Language Models
       </h2>
     </div>
   </div>
 </section>
     
-<div class="columns is-centered has-text-centered">
+<!-- <div class="columns is-centered has-text-centered">
   <div class="column is-two-thirds">
     <h2 class="title is-3">Video</h2>
     <video id="dollyzoom" autoplay controls muted allowfullscreen height="100%">
       <source src="static/论文视频-新.mp4" type="video/mp4">
     </video>
   </div>
-</div>
+</div> -->
  <!-- 显示加粗的线条 -->
     <hr>
 
@@ -188,8 +188,8 @@
                     <h2 class="title is-3">Abstract</h2>
                     <div class="content has-text-justified">
                         <p style="font-size: 125%">
-          Robots' working conditions and manipulation tasks are constantly changing in industrial environments. For robots to learn skills from scratch based on new task commands is a slow process that relies heavily on human assistance. Therefore, developing a mechanism that can adapt to different manipulation tasks and autonomously and quickly learn new skills can effectively address the issue of low efficiency in robot skill learning and enhance the robot's adaptive capabilities. This paper proposes a general Intelligent Transfer System (ITS) that enables robots to learn new skills rapidly and autonomously in dynamic tasks. ITS integrates Large Language Models (LLMs) with transfer reinforcement learning, leveraging LLMs' intelligence and prior skills knowledge. It can comprehend previously unseen task commands and automatically generate a process-oriented reward function based on task reward_components for each task, enabling the autonomous learning of new skills while eliminating the need to design hierarchical sub-processes for complex tasks. In addition, an Intelligent Transfer Network (ITN) is designed within ITS to extract knowledge of relevant skills and accelerate the learning of new ones. We systematically evaluate our method in the simulation environment. The results demonstrate that it can autonomously and efficiently learn unseen skills without relying on pre-programmed behavior, achieving true creativity while improving the time efficiency of two major tasks by 72.22% and 65.17% compared to learning from scratch.   
-          
+<!--           Robots' working conditions and manipulation tasks are constantly changing in industrial environments. For robots to learn skills from scratch based on new task commands is a slow process that relies heavily on human assistance. Therefore, developing a mechanism that can adapt to different manipulation tasks and autonomously and quickly learn new skills can effectively address the issue of low efficiency in robot skill learning and enhance the robot's adaptive capabilities. This paper proposes a general Intelligent Transfer System (ITS) that enables robots to learn new skills rapidly and autonomously in dynamic tasks. ITS integrates Large Language Models (LLMs) with transfer reinforcement learning, leveraging LLMs' intelligence and prior skills knowledge. It can comprehend previously unseen task commands and automatically generate a process-oriented reward function based on task reward_components for each task, enabling the autonomous learning of new skills while eliminating the need to design hierarchical sub-processes for complex tasks. In addition, an Intelligent Transfer Network (ITN) is designed within ITS to extract knowledge of relevant skills and accelerate the learning of new ones. We systematically evaluate our method in the simulation environment. The results demonstrate that it can autonomously and efficiently learn unseen skills without relying on pre-programmed behavior, achieving true creativity while improving the time efficiency of two major tasks by 72.22% and 65.17% compared to learning from scratch.    -->
+          The application of Large Language Models (LLMs) in the field of robotics has gained widespread attention. Due to their powerful code generation and contextual understanding capabilities, these models can generate reward functions from task commands, prompts, and environmental code, thus aiding robots in acquiring skills through reinforcement learning (RL). However, reward functions generated by existing models often suffer from issues of low executability and success rates, particularly when handling vague or complex task commands. These models usually require multiple iterations of optimization to achieve the desired outcomes. To address this challenge, we propose a reward function generation method based on reward components, which leverages human-level prior knowledge to improve generation efficiency and accuracy. Specifically, we have constructed a task→reward components dataset and fine-tuned a Reward Component Generator (RCG) using this dataset. The RCG then guides the automatic generation of reward functions for reinforcement learning tasks. Experimental results demonstrate that our method significantly improves reward executability, accuracy, and task success rate compared to state-of-the-art approaches.
                         </p>
                     </div>
                 </div>
@@ -198,7 +198,7 @@
     </section>
 
 
-    <section class="hero teaser">
+<!--     <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
             <h3 class="title">Algorithm</h3>
@@ -214,7 +214,7 @@
     </div>
   </div>
 </section>
-
+ -->
       <section class="section" style="flex: 1;">
     <div class="container is-max-desktop">
       <h3 class="title">Dataset</h3>
