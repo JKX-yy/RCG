@@ -276,11 +276,11 @@ The following will present four types of instructions in the dataset: clear, amb
                      <br>
         
     <pre><code>
-{
-  "instruction": "For the continuous operation task of the robot involving 3 gears, list all the distance calculation components step by step.",
-  "input": "The robot installs a large gear, a medium gear, and a small gear onto the rotating shaft.",
-  "output": "1. Calculate the distance between the fingertip_midpoint and the large gear: distance_fingertip_midpoint_to_large_gear\n2. Calculate the distance between the large gear and the rotating shaft: distance_large_gear_to_shaft\n3. Calculate the distance between the fingertip_midpoint and the medium gear: distance_fingertip_midpoint_to_medium_gear\n4. Calculate the distance between the medium gear and the rotating shaft: distance_medium_gear_to_shaft\n5. Calculate the distance between the fingertip_midpoint and the small gear: distance_fingertip_midpoint_to_small_gear\n6. Calculate the distance between the small gear and the rotating shaft: distance_small_gear_to_shaft"
-},
+  {
+    "instruction": "For the continuous operation task of the robot, according to the input task command, all the distance calculation components involved are listed step by step according to the execution order.",
+    "input": "The robot mounts three rivets to a metal sheet, one at each corner except the top-right.",
+    "output": "1. Calculate the distance between the fingertip_midpoint and the first rivet: distance_fingertip_midpoint_to_rivet_1\n2. Calculate the distance between the first rivet and the top-left corner of the sheet: distance_rivet_1_to_top_left\n3. Calculate the distance between the jaws and the second rivet: distance_fingertip_midpoint_to_rivet_2\n4. Calculate the distance between the second rivet and the bottom-left corner of the sheet: distance_rivet_2_to_bottom_left\n5. Calculate the distance between the jaws and the third rivet: distance_fingertip_midpoint_to_rivet_3\n6. Calculate the distance between the third rivet and the bottom-right corner of the sheet: distance_rivet_3_to_bottom_right"
+  },
                 </code></pre>
         
                       <br>
